@@ -15,16 +15,22 @@ contract CompteEpargne is Ownable {
 //    constructor(address owner) {
 //        admin = owner;
 //    }
+s
+/*modifier onlyOwner() {
+    require(msg.sender == admin);
+    _;
+}*/
 
     modifier after3Months() {
         require(firstTransctaionTime > 0 && block.timestamp > firstTransctaionTime + 20, //12 * 1 weeks
-                "Attendre 3 mois apres la premiere transaction");
+                unicode"Attendre 3 mois après la première transaction");
         _;
     }
 
     function transferFundsToAdminAccount() public after3Months onlyOwner {
         address _admin = msg.sender;
-        (bool sent, ) = _admin.call{value: balance}("");
+        //(bool sent, ) = payable(_admin).call{value: balance}("");
+        (bool sent, ) = payable(_admin).call{value: address(this).balance}("");
         require(sent, "Failed to send Ether");
         balance = 0;
     }
@@ -32,8 +38,12 @@ contract CompteEpargne is Ownable {
     function addValue() public payable {
         uint _value = msg.value;
         require(_value > 0, "Envoyer une valeur > 0");
-        firstTransctaionTime = block.timestamp;
-        balance += _value;
+        
+        if (firstTransctaionTime == 0) {
+            firstTransctaionTime = block.timestamp;
+        }
+        
+        //balance += _value;
         depots[numeroDeDepot] = _value;
         numeroDeDepot++;
     }

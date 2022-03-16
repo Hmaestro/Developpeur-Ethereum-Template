@@ -6,10 +6,22 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 
 contract GuessUp is Ownable {
 
-    string mot;
-    string indice;
+    string private mot;
+    string public indice;
     mapping(address => bool) etatsJoueurs;
     address public gagnant;
+
+    address[] public players;
+
+    function reset(string memory _mot, string memory _indice) public onlyOwner {
+        uint size = players.length;
+        for (uint i = size - 1; i >= 0; i--) {
+            etatsJoueurs[i] = false;
+            players.pop();
+        }
+        mot = _mot;
+        indice = _indice;
+    }
 
    function setMot(string memory _mot) public onlyOwner {
        mot = _mot;
@@ -19,8 +31,11 @@ contract GuessUp is Ownable {
        indice = _indice;
    }
 
-   function getIndice() public view returns(string memory) {
-       return indice;
+   function getWinner() public view returns(string memory) {
+       if (gagnant == address(0)) {
+           return "Pas de gagnant";
+       }
+       return "il y a un gagnant";
    }
 
    function proposerUnMot(string memory _mot) public returns(bool) {
