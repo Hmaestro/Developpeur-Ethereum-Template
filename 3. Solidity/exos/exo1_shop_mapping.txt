@@ -1,0 +1,11 @@
+Exercice 1: shop - mapping
+
+Ecrire un smart contract qui gère un magasin d'articles (addItem, getItem, setItem).
+
+Un article est défini par une structure de données
+struct Item {
+uint price;
+uint units;
+}
+
+On stock ces produits dans un mapping

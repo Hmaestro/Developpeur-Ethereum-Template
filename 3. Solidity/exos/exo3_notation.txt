@@ -1,0 +1,18 @@
+Exercice 3: système de notation élève
+
+Ecrire un smart contract qui gère un système de notation d'une classe d'étudiants avec addNote, getNote,
+setNote. Un élève est défini par une structure de données
+
+student {
+uint noteBiology;
+uint noteMath;
+uint noteFr;
+}
+
+Les professeurs adéquats (rentrés en "dur") peuvent rajouter des notes. Chaque élève est stocké de
+manière pertinente. On doit pouvoir récupérer:
+- la moyenne générale d’un élève
+- la moyenne de la classe sur une matière
+- la moyenne générale de la classe au global
+On doit avoir un getter pour savoir si l’élève valide ou non son année.
+

@@ -1,0 +1,13 @@
+Exercice 2: shop - tableau
+
+Ecrire un smart contract qui gère un magasin d'articles (addItem, getItem, setItem).
+Un article est défini par une structure de données
+
+item {
+uint price;
+uint units;
+}
+
+Cette fois ci on les stock dans un tableau
+
+On rajoute deleteLastItem() et totalItems()
