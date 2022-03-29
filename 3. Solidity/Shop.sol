@@ -14,7 +14,6 @@ contract Shop {
     function addItem(string memory _name, uint _price, uint _units) external {
         items[_name] = Item(_price, _units);
         items[_name] = Item({price : _price, units : _units});
-
        
     }
 

@@ -2,14 +2,15 @@
 
 pragma solidity 0.8.12;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
+import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
 contract ERC20Token is ERC20 {
 
+    mapping(address=> uint) choices;
 
     constructor(uint256 initialSupply) ERC20("ALYRA", "ALY") {
         _mint(msg.sender, initialSupply);
     }
+ 
 
-    
 }
